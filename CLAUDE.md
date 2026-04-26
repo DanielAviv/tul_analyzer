@@ -98,6 +98,23 @@ Scores are 0–9 per criterion; overall is the mean.
 - Components stay thin: data lives in stores or `data/`.
 - All user-facing strings go through `vue-i18n` (`t('key')`); never hardcode.
 
+## Layout constraint
+
+**The app must never produce a page-level scrollbar.** All content must fit
+within the viewport height at all times. Enforce this through the flex height
+chain:
+
+- `v-main` has `style="height: 100%"` (App.vue).
+- The `v-container` in `HomeView` uses `fill-height`.
+- The `v-row` uses `fill-height`; the left `v-col` uses `d-flex flex-column`.
+- `AnalyzePanel` (and any future full-height panel) uses `flex-grow-1` and
+  fills its card with `height: 100%; overflow: hidden`.
+- Tab windows use `flex: 1 1 0; overflow: hidden`; tab content uses
+  `height: 100%; overflow-y: auto` for internal scrolling when needed.
+
+Never add content outside this chain without verifying it doesn't break the
+no-scroll invariant.
+
 ## Coding practices
 
 - **KISS**: simplest thing that works. No clever indirection, no abstractions

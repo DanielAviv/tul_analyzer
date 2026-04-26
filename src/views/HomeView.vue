@@ -16,10 +16,10 @@ function selectTul(tul) {
 </script>
 
 <template>
-  <v-container fluid class="px-md-12 px-sm-8 px-4 py-6">
-    <v-row>
-      <v-col cols="12" md="8">
-        <AnalyzePanel :tul="selected" />
+  <v-container fluid class="px-md-12 px-sm-8 px-4 py-6 fill-height">
+    <v-row class="fill-height">
+      <v-col cols="12" md="8" class="d-flex flex-column">
+        <AnalyzePanel :tul="selected" class="flex-grow-1" />
       </v-col>
 
       <v-col cols="12" md="4">

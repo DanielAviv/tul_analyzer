@@ -2,11 +2,12 @@ import { createI18n } from 'vue-i18n'
 
 const messages = {
   es: {
-    appTitle: 'Tul Analyzer',
+    appTitle: 'ITF Tul Analysis',
     pickTul: 'Elige un tul',
     movements: 'movimientos',
-    selectPrompt: 'Selecciona un tul para empezar.',
-    input: 'Entrada',
+    tabAnalyze: 'Analizar',
+    tabInfo: 'Sobre el tul',
+    selectTulForInfo: 'Selecciona un tul para ver su información.',
     sourceUpload: 'Archivo',
     sourceWebcam: 'Cámara en vivo',
     sourceUrl: 'URL / stream',
@@ -19,11 +20,12 @@ const messages = {
     analysisFailed: 'Análisis fallido',
   },
   en: {
-    appTitle: 'Tul Analyzer',
+    appTitle: 'ITF Tul Analysis',
     pickTul: 'Pick a tul',
     movements: 'movements',
-    selectPrompt: 'Select a tul to get started.',
-    input: 'Input',
+    tabAnalyze: 'Analyze',
+    tabInfo: 'About',
+    selectTulForInfo: 'Select a tul to see its information.',
     sourceUpload: 'File upload',
     sourceWebcam: 'Live webcam',
     sourceUrl: 'URL / stream',

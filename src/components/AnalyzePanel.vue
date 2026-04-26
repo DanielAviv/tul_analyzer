@@ -1,90 +1,49 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useAnalysisStore } from '@/stores/analysis'
+import AnalyzeTab from '@/components/AnalyzeTab.vue'
+import TulInfoTab from '@/components/TulInfoTab.vue'
 
-const props = defineProps({
+defineProps({
   tul: { type: Object, default: null },
 })
 
 const { t } = useI18n()
-
-const sourceType = ref('upload')
-const sourceUrl = ref('')
-
-const store = useAnalysisStore()
-const { isAnalyzing, lastResult, error } = storeToRefs(store)
-
-const hasTul = computed(() => !!props.tul)
-
-function start() {
-  if (!props.tul) return
-  store.runAnalysis({
-    tulId: props.tul.id,
-    source: { type: sourceType.value, url: sourceUrl.value },
-  })
-}
+const tab = ref('analyze')
 </script>
 
 <template>
-  <div>
-    <template v-if="hasTul">
-      <h2 class="text-h5 mb-1">{{ tul.name }}</h2>
-      <p class="text-body-2 text-medium-emphasis mb-4">
-        {{ tul.rank }} · {{ tul.movements }} {{ t('movements') }}
-      </p>
-    </template>
-    <template v-else>
-      <h2 class="text-h5 mb-1 text-medium-emphasis">{{ t('selectPrompt') }}</h2>
-      <p class="text-body-2 text-medium-emphasis mb-4">&nbsp;</p>
-    </template>
-
-    <v-card class="mb-4">
-      <v-card-title>{{ t('input') }}</v-card-title>
-      <v-card-text>
-        <v-radio-group v-model="sourceType" inline :disabled="!hasTul">
-          <v-radio :label="t('sourceUpload')" value="upload" />
-          <v-radio :label="t('sourceWebcam')" value="webcam" />
-          <v-radio :label="t('sourceUrl')" value="url" />
-        </v-radio-group>
-        <v-text-field
-          v-if="sourceType === 'url'"
-          v-model="sourceUrl"
-          :label="t('videoUrl')"
-          placeholder="https://..."
-          :disabled="!hasTul"
-        />
-        <v-btn color="primary" :loading="isAnalyzing" :disabled="!hasTul" @click="start">
-          {{ t('runAnalysis') }}
-        </v-btn>
-      </v-card-text>
-    </v-card>
-
-    <v-alert v-if="error && hasTul" type="error" class="mb-4">{{ error }}</v-alert>
-
-    <v-card v-if="lastResult && hasTul">
-      <v-card-title>{{ t('score') }}: {{ lastResult.overall }} / 9</v-card-title>
-      <v-card-text>
-        <v-table density="compact">
-          <thead>
-            <tr>
-              <th>{{ t('criterion') }}</th>
-              <th>{{ t('scoreLabel') }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in lastResult.breakdown" :key="row.key">
-              <td>{{ row.label }}</td>
-              <td>{{ row.score }}</td>
-            </tr>
-          </tbody>
-        </v-table>
-        <h3 class="text-subtitle-1 mt-4 mb-2">{{ t('pointers') }}</h3>
-        <ul class="ml-4">
-          <li v-for="p in lastResult.pointers" :key="p">{{ p }}</li>
-        </ul>
-      </v-card-text>
-    </v-card>
-  </div>
+  <v-card class="panel-card d-flex flex-column">
+    <div class="px-4 pt-3 pb-2">
+      <h2 class="text-h5 font-weight-medium">{{ tul ? tul.name : '&nbsp;' }}</h2>
+    </div>
+    <v-tabs v-model="tab">
+      <v-tab value="analyze" class="text-body-1">{{ t('tabAnalyze') }}</v-tab>
+      <v-tab value="info" class="text-body-1">{{ t('tabInfo') }}</v-tab>
+    </v-tabs>
+    <v-divider />
+    <v-window v-model="tab" class="panel-window">
+      <v-window-item value="analyze">
+        <AnalyzeTab :tul="tul" />
+      </v-window-item>
+      <v-window-item value="info">
+        <TulInfoTab :tul="tul" />
+      </v-window-item>
+    </v-window>
+  </v-card>
 </template>
+
+<style scoped>
+.panel-card {
+  height: 100%;
+  overflow: hidden;
+}
+.panel-window {
+  flex: 1 1 0;
+  overflow: hidden;
+}
+:deep(.v-window__container),
+:deep(.v-window-item--active) {
+  height: 100%;
+}
+</style>

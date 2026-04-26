@@ -16,7 +16,7 @@ const { t } = useI18n()
         <LanguageSwitcher />
       </template>
     </v-app-bar>
-    <v-main>
+    <v-main style="height: 100%">
       <router-view />
     </v-main>
   </v-app>
