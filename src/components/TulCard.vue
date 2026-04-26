@@ -25,6 +25,14 @@ const { t } = useI18n()
           class="belt-stripe"
           :style="{ background: tul.belt.stripe }"
         />
+        <div v-if="tul.belt.dan" class="belt-ticks">
+          <span
+            v-for="i in tul.belt.dan"
+            :key="i"
+            class="belt-tick"
+            :style="{ background: tul.belt.tick }"
+          />
+        </div>
       </div>
       <div class="px-3 py-2 flex-grow-1">
         <div class="text-subtitle-1 font-weight-medium">{{ tul.name }}</div>
@@ -54,5 +62,20 @@ const { t } = useI18n()
   top: 50%;
   height: 35%;
   transform: translateY(-50%);
+}
+.belt-ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.belt-tick {
+  display: block;
+  width: 70%;
+  height: 2px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
 }
 </style>

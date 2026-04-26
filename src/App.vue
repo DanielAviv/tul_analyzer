@@ -1,5 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 const { t } = useI18n()
 </script>
 
@@ -11,6 +12,9 @@ const { t } = useI18n()
           {{ t('appTitle') }}
         </router-link>
       </v-app-bar-title>
+      <template #append>
+        <LanguageSwitcher />
+      </template>
     </v-app-bar>
     <v-main>
       <router-view />

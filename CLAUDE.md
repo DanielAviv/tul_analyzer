@@ -113,7 +113,16 @@ Scores are 0–9 per criterion; overall is the mean.
 
 ## Git practices
 
-- Commit messages are **one-liners**. No body, no bullet list, no trailing
-  co-author block unless explicitly requested.
-- Imperative mood, lowercase, concise (e.g. `extract analyze panel into its
-  own component`).
+- Commit messages MUST follow [Conventional Commits](https://www.conventionalcommits.org/)
+  (`type(scope): subject`). Common types: `feat`, `fix`, `chore`, `refactor`,
+  `docs`, `style`, `test`, `build`, `ci`, `perf`. Scope is optional.
+- The subject is a **one-liner**: imperative mood, lowercase, concise
+  (e.g. `feat(home): extract analyze panel into its own component`).
+- Always include a `Co-Authored-By` trailer for the AI tool that helped
+  produce the commit. Example for Claude:
+
+  ```
+  Co-Authored-By: Claude <noreply@anthropic.com>
+  ```
+
+  Use the matching identity when a different AI tool is used.
