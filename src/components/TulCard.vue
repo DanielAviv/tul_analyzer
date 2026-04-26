@@ -1,7 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 
-const props = defineProps({
+defineProps({
   tul: { type: Object, required: true },
   selected: { type: Boolean, default: false },
 })

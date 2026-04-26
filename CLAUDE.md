@@ -22,11 +22,12 @@ src/
   App.vue           # shell: app bar + <router-view/>
   router/           # route table
   views/            # page-level components (HomeView)
-  components/       # reusable UI pieces (TulCard, AnalyzePanel)
+  components/       # reusable UI pieces (TulSelector, AnalyzePanel, AnalysisResult, …)
   stores/           # Pinia stores
   services/         # external integrations (analyzer API + mock fallback)
   data/             # static reference data (tul catalog, scoring criteria)
-  i18n.js           # vue-i18n setup (es default, en fallback)
+  i18n.js           # vue-i18n setup (composes src/i18n/{es,en}.js)
+  i18n/             # per-locale message files (es, en)
   style.css         # minimal global resets; Vuetify owns the rest
 ```
 
@@ -59,12 +60,20 @@ stores already speak this shape.
 
 ## Layout
 
-The app is a single page (`HomeView`) with two columns:
+The app is a single page (`HomeView`) with a two-column layout:
 
-- Left (`AnalyzePanel`): always rendered; input card is disabled until a tul
-  is selected, results appear after a successful run.
-- Right (`TulCard` list): scrollable box, capped at viewport height, lets the
-  user pick from gup + dan tuls. Each card shows a belt-color strip.
+- **Left** (`TulSelector`): bordered card with the gup + dan tul list, each
+  card showing a belt-color strip. Rail-collapsible — `~320px` expanded,
+  `~48px` collapsed (chevron toggle in its header). State is in-memory only.
+- **Right column** (stacked, `d-flex flex-column`):
+  - `AnalyzePanel` (top, `flex-grow-1`): tabbed card. Tab 1 holds the source
+    radios, Run button, and video preview placeholder; tab 2 (`TulInfoTab`)
+    shows the tul's meaning + step list, both pulled from i18n.
+  - `AnalysisResult` (bottom, `flex-shrink: 0`, `max-height: 50vh`): always
+    rendered. Empty placeholder until a run completes; then a compact summary
+    (overall score + top 2 pointers) with an expand toggle that reveals the
+    full breakdown table and remaining pointers. Internal scroll caps the
+    expanded content so the page never scrolls.
 
 ## Input sources
 
@@ -106,11 +115,17 @@ chain:
 
 - `v-main` has `style="height: 100%"` (App.vue).
 - The `v-container` in `HomeView` uses `fill-height`.
-- The `v-row` uses `fill-height`; the left `v-col` uses `d-flex flex-column`.
-- `AnalyzePanel` (and any future full-height panel) uses `flex-grow-1` and
-  fills its card with `height: 100%; overflow: hidden`.
+- Inside it, a horizontal `d-flex flex-row fill-height` row holds the
+  `TulSelector` (fixed-width, flex-shrink: 0) and a `d-flex flex-column
+  flex-grow-1` content column.
+- The content column stacks `AnalyzePanel` (`flex-grow-1`) above
+  `AnalysisResult` (`flex-shrink: 0`, `max-height: 50vh; overflow-y: auto`).
+- `AnalyzePanel` fills its card with `height: 100%; overflow: hidden`.
 - Tab windows use `flex: 1 1 0; overflow: hidden`; tab content uses
   `height: 100%; overflow-y: auto` for internal scrolling when needed.
+- `TulSelector` keeps the list scrollable internally
+  (`flex: 1 1 0; min-height: 0; overflow-y: auto`) so its outer width can
+  shrink to a rail without breaking the chain.
 
 Never add content outside this chain without verifying it doesn't break the
 no-scroll invariant.

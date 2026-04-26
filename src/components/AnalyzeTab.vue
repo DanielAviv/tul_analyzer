@@ -11,7 +11,7 @@ const props = defineProps({
 
 const { t } = useI18n()
 const store = useAnalysisStore()
-const { isAnalyzing, lastResult, error } = storeToRefs(store)
+const { isAnalyzing } = storeToRefs(store)
 const hasTul = computed(() => !!props.tul)
 
 const sourceType = ref('upload')
@@ -52,32 +52,6 @@ function start() {
     </div>
 
     <VideoPreview class="video" />
-
-    <v-alert v-if="error && hasTul" type="error" class="mt-3">{{ error }}</v-alert>
-
-    <v-card v-if="lastResult && hasTul" class="mt-3">
-      <v-card-title>{{ t('score') }}: {{ lastResult.overall }} / 9</v-card-title>
-      <v-card-text>
-        <v-table density="compact">
-          <thead>
-            <tr>
-              <th>{{ t('criterion') }}</th>
-              <th>{{ t('scoreLabel') }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in lastResult.breakdown" :key="row.key">
-              <td>{{ row.label }}</td>
-              <td>{{ row.score }}</td>
-            </tr>
-          </tbody>
-        </v-table>
-        <h3 class="text-subtitle-1 mt-4 mb-2">{{ t('pointers') }}</h3>
-        <ul class="ml-4">
-          <li v-for="p in lastResult.pointers" :key="p">{{ p }}</li>
-        </ul>
-      </v-card-text>
-    </v-card>
   </div>
 </template>
 

@@ -1,14 +1,13 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { TULS } from '@/data/tuls'
-import TulCard from '@/components/TulCard.vue'
+import TulSelector from '@/components/TulSelector.vue'
 import AnalyzePanel from '@/components/AnalyzePanel.vue'
-
-const { t } = useI18n()
+import AnalysisResult from '@/components/AnalysisResult.vue'
 
 const selectedId = ref(null)
 const selected = computed(() => TULS.find((t) => t.id === selectedId.value) ?? null)
+const selectorCollapsed = ref(false)
 
 function selectTul(tul) {
   selectedId.value = tul.id
@@ -17,32 +16,27 @@ function selectTul(tul) {
 
 <template>
   <v-container fluid class="px-md-12 px-sm-8 px-4 py-6 fill-height">
-    <v-row class="fill-height">
-      <v-col cols="12" md="8" class="d-flex flex-column">
+    <div class="layout d-flex flex-row fill-height ga-4">
+      <TulSelector
+        v-model:collapsed="selectorCollapsed"
+        :tuls="TULS"
+        :selected-id="selectedId"
+        @select="selectTul"
+      />
+      <div class="content d-flex flex-column flex-grow-1 ga-4">
         <AnalyzePanel :tul="selected" class="flex-grow-1" />
-      </v-col>
-
-      <v-col cols="12" md="4">
-        <h2 class="text-h6 mb-3">{{ t('pickTul') }}</h2>
-        <v-sheet rounded border class="tul-list pa-2">
-          <div class="d-flex flex-column ga-2">
-            <TulCard
-              v-for="tul in TULS"
-              :key="tul.id"
-              :tul="tul"
-              :selected="tul.id === selectedId"
-              @select="selectTul"
-            />
-          </div>
-        </v-sheet>
-      </v-col>
-    </v-row>
+        <AnalysisResult />
+      </div>
+    </div>
   </v-container>
 </template>
 
 <style scoped>
-.tul-list {
-  max-height: calc(100vh - 160px);
-  overflow-y: auto;
+.layout {
+  width: 100%;
+  min-width: 0;
+}
+.content {
+  min-width: 0;
 }
 </style>

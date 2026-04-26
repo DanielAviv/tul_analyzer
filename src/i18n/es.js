@@ -1,0 +1,150 @@
+export default {
+  appTitle: 'ITF Tul Analysis',
+  pickTul: 'Elige un tul',
+  movements: 'movimientos',
+  tabAnalyze: 'Analizar',
+  tabInfo: 'Sobre el tul',
+  selectTulForInfo: 'Selecciona un tul para ver su información.',
+  meaningHeading: 'Significado',
+  stepsHeading: 'Pasos',
+  stepsEmpty: 'Lista de pasos próximamente.',
+  sourceUpload: 'Archivo',
+  sourceWebcam: 'Cámara en vivo',
+  sourceUrl: 'URL / stream',
+  videoUrl: 'URL del video',
+  runAnalysis: 'Analizar',
+  score: 'Puntaje',
+  criterion: 'Criterio',
+  scoreLabel: 'Puntaje',
+  pointers: 'Sugerencias',
+  analysisFailed: 'Análisis fallido',
+  analysisEmpty: 'Ejecuta un análisis para ver los resultados.',
+  expand: 'Expandir',
+  collapse: 'Colapsar',
+  tul: {
+    'saju-jirugi': {
+      meaning: 'Puñetazo a las cuatro direcciones — un ejercicio fundamental que desarrolla la técnica básica de puñetazo en las cuatro direcciones cardinales.',
+      steps: [],
+    },
+    'saju-makgi': {
+      meaning: 'Bloqueo a las cuatro direcciones — un ejercicio fundamental que ejercita el bloqueo bajo con antebrazo externo en las cuatro direcciones cardinales.',
+      steps: [],
+    },
+    'chon-ji': {
+      meaning: 'Literalmente «Cielo y Tierra». En Oriente representa el comienzo del mundo o la creación del mundo; por eso es el primer tul que aprende un estudiante principiante.',
+      steps: [
+        'Llevar el pie izquierdo a B en postura de marcha izquierda, ejecutando bloqueo bajo hacia B con el antebrazo izquierdo.',
+        'Llevar el pie derecho a B en postura de marcha derecha, ejecutando puñetazo medio hacia B con el puño derecho.',
+        'Llevar el pie derecho a A girando en sentido horario en postura de marcha derecha, ejecutando bloqueo bajo hacia A con el antebrazo derecho.',
+        'Llevar el pie izquierdo a A en postura de marcha izquierda, ejecutando puñetazo medio hacia A con el puño izquierdo.',
+        'Llevar el pie izquierdo a D en postura de marcha izquierda, ejecutando bloqueo bajo hacia D con el antebrazo izquierdo.',
+        'Llevar el pie derecho a D en postura de marcha derecha, ejecutando puñetazo medio hacia D con el puño derecho.',
+        'Llevar el pie derecho a C girando en sentido horario en postura de marcha derecha, ejecutando bloqueo bajo hacia C con el antebrazo derecho.',
+        'Llevar el pie izquierdo a C en postura de marcha izquierda, ejecutando puñetazo medio hacia C con el puño izquierdo.',
+        'Llevar el pie izquierdo a A en postura en L derecha, ejecutando bloqueo medio hacia A con el antebrazo interno izquierdo.',
+        'Llevar el pie derecho a A en postura de marcha derecha, ejecutando puñetazo medio hacia A con el puño derecho.',
+        'Llevar el pie derecho a B girando en sentido horario en postura en L izquierda, ejecutando bloqueo medio hacia B con el antebrazo interno derecho.',
+        'Llevar el pie izquierdo a B en postura de marcha izquierda, ejecutando puñetazo medio hacia B con el puño izquierdo.',
+        'Llevar el pie izquierdo a C en postura en L derecha, ejecutando bloqueo medio hacia C con el antebrazo interno izquierdo.',
+        'Llevar el pie derecho a C en postura de marcha derecha, ejecutando puñetazo medio hacia C con el puño derecho.',
+        'Llevar el pie derecho a D girando en sentido horario en postura en L izquierda, ejecutando bloqueo medio hacia D con el antebrazo interno derecho.',
+        'Llevar el pie izquierdo a D en postura de marcha izquierda, ejecutando puñetazo medio hacia D con el puño izquierdo.',
+        'Llevar el pie derecho a D en postura de marcha derecha, ejecutando puñetazo medio hacia D con el puño derecho.',
+        'Llevar el pie derecho a C en postura de marcha izquierda, ejecutando puñetazo medio hacia D con el puño izquierdo.',
+        'Llevar el pie izquierdo a C en postura de marcha derecha, ejecutando puñetazo medio hacia D con el puño derecho.',
+      ],
+    },
+    'dan-gun': {
+      meaning: 'Nombrado en honor al sagrado Dan-Gun, fundador legendario de Corea en el año 2333 a.C.',
+      steps: [],
+    },
+    'do-san': {
+      meaning: 'El seudónimo del patriota Ahn Chang-Ho (1876–1938), quien dedicó toda su vida a impulsar la educación de Corea y su movimiento de independencia.',
+      steps: [],
+    },
+    'won-hyo': {
+      meaning: 'Nombrado en honor al célebre monje Won-Hyo, quien introdujo el budismo en la dinastía Silla en el año 686 d.C.',
+      steps: [],
+    },
+    'yul-gok': {
+      meaning: 'El seudónimo del gran filósofo y erudito Yi I (1536–1584), llamado a menudo el «Confucio de Corea». Los 38 movimientos hacen referencia a su lugar de nacimiento en el paralelo 38.',
+      steps: [],
+    },
+    'joong-gun': {
+      meaning: 'Nombrado en honor al patriota Ahn Joong-Gun, quien asesinó a Hiro-Bumi Ito —primer Gobernador General japonés de Corea— en la estación de Harbin el 26 de octubre de 1909.',
+      steps: [],
+    },
+    'toi-gye': {
+      meaning: 'El seudónimo del erudito Yi Hwang (1501–1572), reconocida autoridad en neoconfucianismo. Los 37 movimientos hacen referencia a su lugar de nacimiento en el paralelo 37.',
+      steps: [],
+    },
+    'hwa-rang': {
+      meaning: 'Nombrado en honor al grupo de jóvenes guerreros Hwa-Rang, originado en la dinastía Silla en el siglo VII d.C. Este grupo fue la fuerza impulsora detrás de la unificación de Corea.',
+      steps: [],
+    },
+    'choong-moo': {
+      meaning: 'Título póstumo otorgado al almirante Yi Soon-Sin (1545–1598), a quien se atribuye haber inventado el primer barco acorazado (Kobukson) en 1592.',
+      steps: [],
+    },
+    'kwang-gae': {
+      meaning: 'Nombrado en honor al famoso Kwang-Gae-Toh-Wang, decimonoveno rey de la dinastía Koguryo (391–412 d.C.), quien recuperó todos los territorios perdidos, incluida la mayor parte de Manchuria.',
+      steps: [],
+    },
+    'po-eun': {
+      meaning: 'El seudónimo del leal súbdito Chong Mong-Chu (1400 d.C.), pionero de la física coreana, conocido por su poema «Sería leal a mi rey incluso después de muerto».',
+      steps: [],
+    },
+    'ge-baek': {
+      meaning: 'Nombrado en honor a Ge-Baek, gran general de la dinastía Baek Je (660 d.C.), conocido por su severa y estricta disciplina militar.',
+      steps: [],
+    },
+    'eui-am': {
+      meaning: 'El seudónimo de Son Byong Hi, líder del movimiento de independencia coreano del 1 de marzo de 1919. Los 45 movimientos reflejan su edad al cambiar el nombre Dong Hak por Chondo Kyo.',
+      steps: [],
+    },
+    'choong-jang': {
+      meaning: 'Título póstumo del general Kim Duk Ryang, que vivió en la dinastía Yi (siglo XIV). Murió a los 27 años; los 52 movimientos simbolizan las dos últimas cifras del año 1392.',
+      steps: [],
+    },
+    'juche': {
+      meaning: 'Idea filosófica según la cual el hombre es dueño de todo y decide su propio destino. Se basa en la creencia de que el destino del hombre está determinado por él mismo, no por fuerzas sobrenaturales.',
+      steps: [],
+    },
+    'sam-il': {
+      meaning: 'Denota el histórico Movimiento del 1 de marzo de 1919, cuando los coreanos se levantaron contra la ocupación japonesa y declararon su independencia. Los 33 movimientos representan a los 33 patriotas que firmaron la Declaración de Independencia.',
+      steps: [],
+    },
+    'yoo-sin': {
+      meaning: 'Nombrado en honor al general Kim Yoo Sin (595–673 d.C.), general en jefe durante la dinastía Silla, cuya brillantez militar condujo a la unificación de los tres reinos de Corea.',
+      steps: [],
+    },
+    'choi-yong': {
+      meaning: 'Nombrado en honor al general Choi Yong (1316–1388 d.C.), Primer Ministro y Comandante en Jefe de las Fuerzas Armadas de la dinastía Koryo, muy respetado y querido por el pueblo por su lealtad, patriotismo y humildad.',
+      steps: [],
+    },
+    'yon-gae': {
+      meaning: 'Nombrado en honor al famoso general de Koguryo, Yon Gae Somun (618 d.C.), quien repelió las invasiones de los Tang chinos. Los 49 movimientos hacen referencia a las dos últimas cifras del año 649 d.C.',
+      steps: [],
+    },
+    'ul-ji': {
+      meaning: 'Nombrado en honor al general Ul-Ji Moon Dok, quien derrotó brillantemente la invasión Sui china a Corea en 612 d.C. Los 42 movimientos representan su edad al ejecutar la famosa estrategia de retirada del río Sal-Su.',
+      steps: [],
+    },
+    'moon-moo': {
+      meaning: 'Nombrado en honor al trigésimo rey de la dinastía Silla (661–681 d.C.), quien completó la unificación de los tres reinos de Corea. Los 61 movimientos simbolizan las dos últimas cifras del año 661 d.C.',
+      steps: [],
+    },
+    'so-san': {
+      meaning: 'El seudónimo del gran monje Choi Hyong Ung (1520–1604 d.C.), quien organizó y lideró a los monjes guerreros contra la invasión japonesa de Corea. Los 72 movimientos hacen referencia a su edad al reclutar un ejército de 73.000 seguidores.',
+      steps: [],
+    },
+    'se-jong': {
+      meaning: 'Nombrado en honor al más grande rey coreano, Se-Jong el Grande (1397–1450 d.C.), quien inventó el Hangul, el alfabeto fonético coreano, en 1443. Los 24 movimientos representan las 24 letras del alfabeto Hangul.',
+      steps: [],
+    },
+    'tong-il': {
+      meaning: 'Denota la unificación de Corea, que ha sido el deseo supremo de todos los coreanos desde que el país fue dividido en 1945. Los 56 movimientos simbolizan el deseo inquebrantable del pueblo coreano de reunificarse.',
+      steps: [],
+    },
+  },
+}
