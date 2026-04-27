@@ -9,7 +9,7 @@ defineProps({
 })
 defineEmits(['select', 'update:collapsed'])
 
-const { t } = useI18n()
+const { t } = useI18n() // still needed for collapse/expand button titles
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const { t } = useI18n()
     :class="{ 'selector--collapsed': collapsed }"
   >
     <div class="header d-flex align-center" :class="collapsed ? 'justify-center px-1' : 'px-3'">
-      <h2 v-if="!collapsed" class="text-h6 flex-grow-1 mb-0">{{ t('pickTul') }}</h2>
+      <span v-if="!collapsed" class="flex-grow-1" />
       <v-btn
         icon
         variant="text"

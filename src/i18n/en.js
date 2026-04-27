@@ -1,6 +1,7 @@
 export default {
   appTitle: 'ITF Tul Analysis',
   pickTul: 'Pick a tul',
+  selectTulToAnalyze: 'Select a tul to analyze',
   movements: 'movements',
   tabAnalyze: 'Analyze',
   tabInfo: 'About',
@@ -21,6 +22,21 @@ export default {
   analysisEmpty: 'Run an analysis to see results.',
   expand: 'Expand',
   collapse: 'Collapse',
+  logout: 'Log out',
+  login: {
+    title: 'Sign in',
+    email: 'Email',
+    password: 'Password',
+    button: 'Sign in',
+    forgotPassword: 'Forgot your password?',
+  },
+  forgotPassword: {
+    title: 'Reset password',
+    hint: 'Enter your email address and we\'ll send you instructions to reset your password.',
+    button: 'Send instructions',
+    sent: 'If that email is registered, you\'ll receive instructions shortly.',
+    backToLogin: 'Back to sign in',
+  },
   tul: {
     'saju-jirugi': {
       meaning: 'Four-direction punch — a foundational training exercise that builds the basic punching technique in four cardinal directions.',

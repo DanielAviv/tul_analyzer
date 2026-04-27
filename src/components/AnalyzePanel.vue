@@ -15,7 +15,9 @@ const tab = ref('analyze')
 <template>
   <v-card class="panel-card d-flex flex-column">
     <div class="px-4 pt-3 pb-2">
-      <h2 class="text-h5 font-weight-medium">{{ tul ? tul.name : '&nbsp;' }}</h2>
+      <h2 class="text-h5 font-weight-medium" :class="{ 'text-medium-emphasis': !tul }">
+        {{ tul ? tul.name : t('selectTulToAnalyze') }}
+      </h2>
     </div>
     <v-tabs v-model="tab">
       <v-tab value="analyze" class="text-body-1">{{ t('tabAnalyze') }}</v-tab>

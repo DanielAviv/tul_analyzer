@@ -38,5 +38,6 @@ function selectTul(tul) {
 }
 .content {
   min-width: 0;
+  position: relative;
 }
 </style>

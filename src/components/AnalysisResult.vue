@@ -15,7 +15,7 @@ const restPointers = computed(() => lastResult.value?.pointers?.slice(2) ?? [])
 </script>
 
 <template>
-  <v-card class="analysis-result" :class="{ 'is-empty': !hasResult && !error }">
+  <v-card class="analysis-result" :class="{ 'is-empty': !hasResult && !error, 'is-expanded': expanded }">
     <v-alert v-if="error" type="error" density="compact" rounded="0" class="mb-0">
       {{ error }}
     </v-alert>
@@ -84,8 +84,15 @@ const restPointers = computed(() => lastResult.value?.pointers?.slice(2) ?? [])
 <style scoped>
 .analysis-result {
   flex-shrink: 0;
-  max-height: 50vh;
   overflow-y: auto;
+}
+.analysis-result.is-expanded {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 50vh;
+  z-index: 10;
 }
 .empty {
   height: 56px;

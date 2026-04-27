@@ -1,6 +1,7 @@
 export default {
   appTitle: 'ITF Tul Analysis',
   pickTul: 'Elige un tul',
+  selectTulToAnalyze: 'Selecciona un tul para analizar',
   movements: 'movimientos',
   tabAnalyze: 'Analizar',
   tabInfo: 'Sobre el tul',
@@ -21,6 +22,21 @@ export default {
   analysisEmpty: 'Ejecuta un análisis para ver los resultados.',
   expand: 'Expandir',
   collapse: 'Colapsar',
+  logout: 'Cerrar sesión',
+  login: {
+    title: 'Iniciar sesión',
+    email: 'Correo electrónico',
+    password: 'Contraseña',
+    button: 'Iniciar sesión',
+    forgotPassword: '¿Olvidaste tu contraseña?',
+  },
+  forgotPassword: {
+    title: 'Recuperar contraseña',
+    hint: 'Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.',
+    button: 'Enviar instrucciones',
+    sent: 'Si el correo está registrado, te llegará instrucciones en breve.',
+    backToLogin: 'Volver a iniciar sesión',
+  },
   tul: {
     'saju-jirugi': {
       meaning: 'Puñetazo a las cuatro direcciones — un ejercicio fundamental que desarrolla la técnica básica de puñetazo en las cuatro direcciones cardinales.',
