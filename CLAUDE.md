@@ -1,8 +1,14 @@
 # Tul Analyzer
 
-VAR for ITF Taekwondo tul (patterns). The app receives recorded or live video
-of a contestant performing a tul, runs it through an ML/CV pipeline, and
-returns a per-criterion score plus actionable pointers.
+**Primary purpose: VAR (Video Assistant Referee) for ITF Taekwondo competition.**
+The app is used by judges and referees during or after a tul (pattern)
+performance to get an objective, ML-assisted score. It is not an education or
+training tool — the target user is someone officiating a match, not a student
+practitioner.
+
+The app receives recorded or live video of a contestant performing a tul, runs
+it through an ML/CV pipeline, and returns a per-criterion score plus actionable
+pointers that support the panel's decision.
 
 ## Stack
 
@@ -65,15 +71,16 @@ The app is a single page (`HomeView`) with a two-column layout:
 - **Left** (`TulSelector`): bordered card with the gup + dan tul list, each
   card showing a belt-color strip. Rail-collapsible — `~320px` expanded,
   `~48px` collapsed (chevron toggle in its header). State is in-memory only.
-- **Right column** (stacked, `d-flex flex-column`):
-  - `AnalyzePanel` (top, `flex-grow-1`): tabbed card. Tab 1 holds the source
-    radios, Run button, and video preview placeholder; tab 2 (`TulInfoTab`)
-    shows the tul's meaning + step list, both pulled from i18n.
-  - `AnalysisResult` (bottom, `flex-shrink: 0`, `max-height: 50vh`): always
-    rendered. Empty placeholder until a run completes; then a compact summary
-    (overall score + top 2 pointers) with an expand toggle that reveals the
-    full breakdown table and remaining pointers. Internal scroll caps the
-    expanded content so the page never scrolls.
+- **Right column** (`d-flex flex-column flex-grow-1`, `position: relative`):
+  - `AnalyzePanel` (`flex-grow-1`): tabbed card filling the full column height.
+    Tab 1 holds the source radios, Run button, and video preview; tab 2
+    (`TulInfoTab`) shows the tul's meaning + step list.
+  - `AnalysisResult` (absolute overlay, `position: absolute; bottom: 12px; right: 12px; z-index: 10`):
+    always rendered on top of the video area, not in flex flow. Collapsed: a
+    compact square showing only the score ring + chevron. Expanded: widens to
+    50% with a two-column detail panel (breakdown table left, pointers right).
+    Internal scroll (`max-height: 50vh; overflow-y: auto`) keeps the page from
+    ever scrolling.
 
 ## Input sources
 
@@ -97,7 +104,7 @@ Standard ITF criteria (`src/data/tuls.js`):
 4. Rhythm
 5. Breathing
 
-Scores are 0–9 per criterion; overall is the mean.
+Scores are 0–9 per criterion; overall is 0–9 (independent from breakdown in the mock; the real backend computes it server-side).
 
 ## Conventions
 
@@ -118,8 +125,9 @@ chain:
 - Inside it, a horizontal `d-flex flex-row fill-height` row holds the
   `TulSelector` (fixed-width, flex-shrink: 0) and a `d-flex flex-column
   flex-grow-1` content column.
-- The content column stacks `AnalyzePanel` (`flex-grow-1`) above
-  `AnalysisResult` (`flex-shrink: 0`, `max-height: 50vh; overflow-y: auto`).
+- The content column contains `AnalyzePanel` (`flex-grow-1`) filling the full
+  height. `AnalysisResult` is `position: absolute` inside a `position: relative`
+  wrapper and floats over the video — it is not in the flex flow.
 - `AnalyzePanel` fills its card with `height: 100%; overflow: hidden`.
 - Tab windows use `flex: 1 1 0; overflow: hidden`; tab content uses
   `height: 100%; overflow-y: auto` for internal scrolling when needed.

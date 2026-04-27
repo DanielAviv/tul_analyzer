@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AnalyzeTab from '@/components/AnalyzeTab.vue'
 import TulInfoTab from '@/components/TulInfoTab.vue'
+import BeltStrip from '@/components/BeltStrip.vue'
 
 defineProps({
   tul: { type: Object, default: null },
@@ -14,7 +15,8 @@ const tab = ref('analyze')
 
 <template>
   <v-card class="panel-card d-flex flex-column">
-    <div class="px-4 pt-3 pb-2">
+    <div class="d-flex align-center px-4 pt-3 pb-2 ga-3">
+      <BeltStrip v-if="tul" :belt="tul.belt" class="header-belt" />
       <h2 class="text-h5 font-weight-medium" :class="{ 'text-medium-emphasis': !tul }">
         {{ tul ? tul.name : t('selectTulToAnalyze') }}
       </h2>

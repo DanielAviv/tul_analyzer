@@ -24,12 +24,10 @@ export async function analyzeRecording({ tulId, source }) {
 function mockAnalyze({ tulId, source }) {
   const breakdown = SCORING_CRITERIA.map((c) => ({
     ...c,
-    score: Number((6 + Math.random() * 3).toFixed(1)),
+    score: Number((Math.random() * 9).toFixed(1)),
     note: 'Mock evaluation — replace once analyzer API is wired up.',
   }))
-  const overall = Number(
-    (breakdown.reduce((s, c) => s + c.score, 0) / breakdown.length).toFixed(2),
-  )
+  const overall = Number((Math.random() * 9).toFixed(2))
   return Promise.resolve({
     tulId,
     sourceType: source?.type ?? 'unknown',
