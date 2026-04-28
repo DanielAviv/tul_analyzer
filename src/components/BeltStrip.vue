@@ -28,7 +28,8 @@ defineProps({
   position: relative;
   width: 10px;
   align-self: stretch;
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 2px;
 }
 .belt-base {
   position: absolute;

@@ -4,9 +4,13 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
-import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
+const LOCALES = [
+  { code: 'es', flag: '🇪🇸', label: 'Español' },
+  { code: 'en', flag: '🇬🇧', label: 'English' },
+]
 const router = useRouter()
 const auth = useAuthStore()
 const { user, isLoggedIn } = storeToRefs(auth)
@@ -36,8 +40,6 @@ function logout() {
         </router-link>
       </v-app-bar-title>
       <template #append>
-        <LanguageSwitcher />
-
         <v-menu v-if="isLoggedIn" location="bottom end" offset="8">
           <template #activator="{ props }">
             <v-btn variant="text" class="user-btn ml-1 px-2" v-bind="props">
@@ -56,7 +58,20 @@ function logout() {
             </v-btn>
           </template>
 
-          <v-list density="compact" min-width="160">
+          <v-list density="compact" min-width="180">
+            <v-list-item
+              v-for="l in LOCALES"
+              :key="l.code"
+              :title="l.label"
+              :active="locale === l.code"
+              active-color="primary"
+              @click="locale = l.code"
+            >
+              <template #prepend>
+                <span class="locale-flag mr-3">{{ l.flag }}</span>
+              </template>
+            </v-list-item>
+            <v-divider class="my-1" />
             <v-list-item
               :title="t('logout')"
               prepend-icon="mdi-logout"
@@ -71,3 +86,10 @@ function logout() {
     </v-main>
   </v-app>
 </template>
+
+<style scoped>
+.locale-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+</style>

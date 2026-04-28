@@ -68,29 +68,31 @@ stores already speak this shape.
 
 The app is a single page (`HomeView`) with a two-column layout:
 
-- **Left** (`TulSelector`): bordered card with the gup + dan tul list, each
+- **Left** (`TulSelector`): elevated card (`elevation="2"`) with the gup + dan tul list, each
   card showing a belt-color strip. Rail-collapsible — `~320px` expanded,
   `~48px` collapsed (chevron toggle in its header). State is in-memory only.
 - **Right column** (`d-flex flex-column flex-grow-1`, `position: relative`):
   - `AnalyzePanel` (`flex-grow-1`): tabbed card filling the full column height.
-    Tab 1 holds the source radios, Run button, and video preview; tab 2
+    Tab 1 holds the source button, Run button, and video preview; tab 2
     (`TulInfoTab`) shows the tul's meaning + step list.
-  - `AnalysisResult` (absolute overlay, `position: absolute; bottom: 12px; right: 12px; z-index: 10`):
+  - `AnalysisResult` (absolute overlay, `position: absolute; bottom: 0; right: 0; z-index: 10`):
     always rendered on top of the video area, not in flex flow. Collapsed: a
     compact square showing only the score ring + chevron. Expanded: widens to
-    50% with a two-column detail panel (breakdown table left, pointers right).
+    50% with a letter grade left of the ring, and a two-column detail panel
+    (breakdown table left, pointers right) below.
     Internal scroll (`max-height: 50vh; overflow-y: auto`) keeps the page from
     ever scrolling.
 
 ## Input sources
 
-`AnalyzePanel.vue` lets the user choose between three sources, all funneled
-through the same store action:
+`AnalyzeTab.vue` exposes a button labelled "Fuente" that opens a `v-dialog`
+modal. The modal has a `v-select` for the source type, then conditionally shows:
 
-- File upload (recorded video)
-- Live webcam (real-time)
-- URL / stream (remote source)
+- **File upload**: a styled drag-and-drop zone (click or drop); shows filename once picked.
+- **Webcam**: nothing extra.
+- **URL / stream**: a text field for the URL.
 
+An Accept button commits the selection back to the tab; Cancel discards it.
 The current scaffold passes `{ type, url }` to the service; wiring actual
 `File`/`MediaStream` handles is the next step.
 
@@ -105,6 +107,30 @@ Standard ITF criteria (`src/data/tuls.js`):
 5. Breathing
 
 Scores are 0–9 per criterion; overall is 0–9 (independent from breakdown in the mock; the real backend computes it server-side).
+
+## Typography
+
+- Font: **Barlow** (Google Fonts), weights 400/500/600/700.
+- Loaded in `index.html`; applied via `--v-font-family` CSS variable in
+  `src/style.css` so Vuetify inherits it everywhere.
+
+## UI conventions
+
+- **Elevation over borders**: cards use Vuetify's `elevation` prop (1–6), not
+  `outlined` or `border`. Keep this consistent across new components.
+- **BeltStrip**: always rendered with a full `border: 1px solid rgba(0,0,0,0.14)`
+  so the strip is visible even when the belt color is white.
+- **AnalyzePanel header**: displays the tul name as `text-h5` with a
+  `text-caption` subtitle (`rank · N movements`) directly below it. That
+  subtitle was intentionally removed from `TulInfoTab`.
+- **AnalysisResult grade**: when expanded and a result exists, shows a stacked
+  label (`Nota` / `Grade` prefix + letter) to the left of the score ring.
+  Grade scale: A+ ≥ 95, A ≥ 85, B+ ≥ 75, B ≥ 65, C ≥ 55, D ≥ 45, F < 45
+  (based on `overall / 9 * 100`). Letter color matches the ring's HSL formula;
+  the prefix label is always black.
+- **Language switcher**: lives inside the user menu in `App.vue` (not a
+  standalone component in the app bar). `LanguageSwitcher.vue` is no longer
+  used.
 
 ## Conventions
 

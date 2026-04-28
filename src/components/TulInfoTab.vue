@@ -21,10 +21,6 @@ const steps = computed(() => {
 <template>
   <div class="tul-info-tab">
     <template v-if="tul">
-      <p class="text-caption text-medium-emphasis mb-3">
-        {{ tul.rank }} · {{ tul.movements }} {{ t('movements') }}
-      </p>
-
       <h3 class="text-subtitle-1 font-weight-medium mb-1">{{ t('meaningHeading') }}</h3>
       <p class="text-body-1 mb-4">{{ meaning }}</p>
 

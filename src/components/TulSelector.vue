@@ -15,7 +15,7 @@ const { t } = useI18n() // still needed for collapse/expand button titles
 <template>
   <v-sheet
     rounded
-    border
+    elevation="2"
     class="selector d-flex flex-column"
     :class="{ 'selector--collapsed': collapsed }"
   >

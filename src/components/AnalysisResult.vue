@@ -14,6 +14,25 @@ const hasResult = computed(() => !!lastResult.value)
 const overallOutOf100 = computed(() =>
   hasResult.value ? Math.round((lastResult.value.overall / 9) * 100) : null,
 )
+
+function scoreToGrade(s) {
+  if (s >= 95) return 'A+'
+  if (s >= 85) return 'A'
+  if (s >= 75) return 'B+'
+  if (s >= 65) return 'B'
+  if (s >= 55) return 'C'
+  if (s >= 45) return 'D'
+  return 'F'
+}
+
+const grade = computed(() =>
+  overallOutOf100.value !== null ? scoreToGrade(overallOutOf100.value) : null,
+)
+const gradeColor = computed(() =>
+  overallOutOf100.value !== null
+    ? `hsl(${(overallOutOf100.value / 100) * 120}, 70%, 45%)`
+    : undefined,
+)
 </script>
 
 <template>
@@ -27,6 +46,10 @@ const overallOutOf100 = computed(() =>
     </v-alert>
 
     <div class="summary d-flex align-center justify-end pa-2 ga-1">
+      <div v-if="expanded && grade" class="grade-label mr-3">
+        <span class="grade-prefix">{{ t('grade') }}</span>
+        <span class="grade-value" :style="{ color: gradeColor }">{{ grade }}</span>
+      </div>
       <ScoreRing :score="overallOutOf100" :size="88" />
       <v-btn
         v-if="hasResult"
@@ -75,8 +98,8 @@ const overallOutOf100 = computed(() =>
 <style scoped>
 .analysis-result {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 0;
+  right: 0;
   z-index: 10;
 }
 .analysis-result.is-expanded {
@@ -86,5 +109,25 @@ const overallOutOf100 = computed(() =>
 }
 .details-body {
   align-items: flex-start;
+}
+.grade-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  gap: 2px;
+}
+.grade-prefix {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.7);
+}
+.grade-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 </style>

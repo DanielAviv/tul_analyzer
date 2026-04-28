@@ -17,9 +17,14 @@ const tab = ref('analyze')
   <v-card class="panel-card d-flex flex-column">
     <div class="d-flex align-center px-4 pt-3 pb-2 ga-3">
       <BeltStrip v-if="tul" :belt="tul.belt" class="header-belt" />
-      <h2 class="text-h5 font-weight-medium" :class="{ 'text-medium-emphasis': !tul }">
-        {{ tul ? tul.name : t('selectTulToAnalyze') }}
-      </h2>
+      <div class="d-flex flex-column">
+        <h2 class="text-h5 font-weight-medium" :class="{ 'text-medium-emphasis': !tul }">
+          {{ tul ? tul.name : t('selectTulToAnalyze') }}
+        </h2>
+        <span v-if="tul" class="text-caption text-medium-emphasis">
+          {{ tul.rank }} · {{ tul.movements }} {{ t('movements') }}
+        </span>
+      </div>
     </div>
     <v-tabs v-model="tab">
       <v-tab value="analyze" class="text-body-1">{{ t('tabAnalyze') }}</v-tab>

@@ -13,8 +13,9 @@ const { t } = useI18n()
 
 <template>
   <v-card
-    :variant="selected ? 'tonal' : 'outlined'"
+    :variant="selected ? 'tonal' : 'elevated'"
     :color="selected ? 'primary' : undefined"
+    :elevation="selected ? 2 : 1"
     hover
     @click="$emit('select', tul)"
   >
